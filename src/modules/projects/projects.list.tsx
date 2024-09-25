@@ -29,12 +29,18 @@ const ProjectsList: React.FC = () => {
       .finally(() => setUpdatingItemId(null));
   }
 
+  if (isLoading) {
+    return (
+      <div className='h-screen flex items-center justify-center'>
+        <Icons.spinner className='animate-spin' />
+      </div>
+    );
+  }
+
   return (
     <>
-      {isLoading ? (
-        <div className='h-screen flex items-center justify-center'>
-          <Icons.spinner className='animate-spin' />
-        </div>
+      {data?.length === 0 ? (
+        <div className='h-screen flex items-center justify-center'>There are no projects added</div>
       ) : (
         <ScrollArea className='h-screen'>
           <div className='flex flex-col gap-2'>
